@@ -1,0 +1,132 @@
+package com.ap4b.view;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+
+
+
+
+public class MainFrm2 extends JFrame {
+
+	private JPanel contentPane;
+	private JDesktopPane table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainFrm2 frame = new MainFrm2();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MainFrm2() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 794, 507);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Enseignant manager");
+		menuBar.add(mnNewMenu);
+		
+		JMenu mnNewMenu_1 = new JMenu("materiel manager");
+		mnNewMenu.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("consulter");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MaterielManagerInterFrmActionPerformed(e);//afficher l'interface MaterielManagerInterFrm qui est JInternalFrame
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem);
+				
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("sortir en toute s\u00E9curit\u00E9");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sortirActionPerformed(e);//sortir de ce systï¿½me
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_4);
+		
+		JMenu mnNewMenu_3 = new JMenu("About us");
+		menuBar.add(mnNewMenu_3);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Notre groupe");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				aboutUsActionPerformed(e);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_2);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		table = new JDesktopPane();
+		table.setBackground(Color.CYAN);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 779, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 446, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+	
+
+	private void sortirActionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		int result = JOptionPane.showConfirmDialog(null, "Vous voulez sortir de ce système?");
+		if(result==0) {
+			dispose();
+		}
+	}
+
+
+	private void MaterielManagerInterFrmActionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		MaterielManagerInterFrm3 materielManagerInterFrm = new MaterielManagerInterFrm3();
+		materielManagerInterFrm.setVisible(true);
+		table.add(materielManagerInterFrm);
+	}
+
+	private void aboutUsActionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		AboutusInterFrm aboutUsFrm = new AboutusInterFrm();
+		aboutUsFrm.setVisible(true);
+		table.add(aboutUsFrm);
+	}
+}
